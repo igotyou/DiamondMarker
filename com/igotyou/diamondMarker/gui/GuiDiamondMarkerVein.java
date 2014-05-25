@@ -1,10 +1,10 @@
-package com.example.diamondMarker.gui;
+package com.igotyou.diamondMarker.gui;
 
 import org.lwjgl.input.Keyboard;
 
-import com.example.diamondMarker.DiamondMarker;
-import com.example.diamondMarker.Settings;
-import com.example.diamondMarker.Vein;
+import com.igotyou.diamondMarker.DiamondMarker;
+import com.igotyou.diamondMarker.Settings;
+import com.igotyou.diamondMarker.Vein;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,6 +18,7 @@ public class GuiDiamondMarkerVein extends GuiScreen
 	
 	private GuiButton renameButton;
 	private GuiTextField veinName;
+	private GuiDiamondMarkerVeinSlot slotContianer;
 	
 	public GuiDiamondMarkerVein(GuiScreen previousScreen, Vein veinToDisplay)
 	{
@@ -30,12 +31,13 @@ public class GuiDiamondMarkerVein extends GuiScreen
 	{
 		Keyboard.enableRepeatEvents(true);
 		
-		veinName = new GuiTextField(this.fontRendererObj, this.width/2 -100, 100, 200, 20);
+		veinName = new GuiTextField(this.fontRendererObj, this.width/2 -100, 15, 200, 20);
 		veinName.setFocused(true);
 		veinName.setText(vein.getName());
 		
-		this.buttonList.add(this.renameButton = new GuiButton(1, this.width / 2 + 110, 100, 100, 20, "Rename"));
+		this.buttonList.add(this.renameButton = new GuiButton(1, this.width / 2 + 110, 15, 100, 20, "Rename"));
 		this.buttonList.add(new GuiButton(100, this.width/2-100, this.height-20, 200, 20, "Exit"));
+		this.slotContianer = new GuiDiamondMarkerVeinSlot(this,vein);
 	}
 	
 	public void actionPerformed(GuiButton button)
@@ -83,9 +85,8 @@ public class GuiDiamondMarkerVein extends GuiScreen
 	
 	public void drawScreen(int x, int y, float f)
 	{
-		drawDefaultBackground();
+		this.slotContianer.drawScreen(x, y, f);
 		this.veinName.drawTextBox();
-		drawCenteredString(this.fontRendererObj, vein.getName(), this.width / 2, 15, 3333333);
 		super.drawScreen(x,y,f);
 	}
 }

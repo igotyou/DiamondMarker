@@ -1,4 +1,4 @@
-package com.example.diamondMarker;
+package com.igotyou.diamondMarker;
 
 import java.io.File;
 import java.io.FileReader;
@@ -6,9 +6,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.diamondMarker.utils.Location;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.igotyou.diamondMarker.utils.Location;
 
 public class Settings 
 {

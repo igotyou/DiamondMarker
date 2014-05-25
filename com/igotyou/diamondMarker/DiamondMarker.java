@@ -1,11 +1,11 @@
-package com.example.diamondMarker;
+package com.igotyou.diamondMarker;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
 
-import com.example.diamondMarker.utils.Location;
+import com.igotyou.diamondMarker.utils.Location;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;

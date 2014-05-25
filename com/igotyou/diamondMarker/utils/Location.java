@@ -1,4 +1,4 @@
-package com.example.diamondMarker.utils;
+package com.igotyou.diamondMarker.utils;
 
 public class Location 
 {

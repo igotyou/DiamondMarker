@@ -1,13 +1,13 @@
-package com.example.diamondMarker.gui;
+package com.igotyou.diamondMarker.gui;
 
 import java.util.Set;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.example.diamondMarker.DiamondMarker;
-import com.example.diamondMarker.MinedOre.Type;
-import com.example.diamondMarker.Vein;
+import com.igotyou.diamondMarker.DiamondMarker;
+import com.igotyou.diamondMarker.Vein;
+import com.igotyou.diamondMarker.MinedOre.Type;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

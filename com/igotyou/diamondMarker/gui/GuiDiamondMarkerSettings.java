@@ -1,7 +1,7 @@
-package com.example.diamondMarker.gui;
+package com.igotyou.diamondMarker.gui;
 
-import com.example.diamondMarker.DiamondMarker;
-import com.example.diamondMarker.Settings;
+import com.igotyou.diamondMarker.DiamondMarker;
+import com.igotyou.diamondMarker.Settings;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

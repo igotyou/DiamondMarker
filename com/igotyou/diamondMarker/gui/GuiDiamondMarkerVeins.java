@@ -1,10 +1,10 @@
-package com.example.diamondMarker.gui;
+package com.igotyou.diamondMarker.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.example.diamondMarker.DiamondMarker;
-import com.example.diamondMarker.Settings;
-import com.example.diamondMarker.Vein;
+import com.igotyou.diamondMarker.DiamondMarker;
+import com.igotyou.diamondMarker.Settings;
+import com.igotyou.diamondMarker.Vein;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -76,7 +76,6 @@ public class GuiDiamondMarkerVeins extends GuiScreen
 	public void drawScreen(int x, int y, float f)
 	{
 		this.slotContianer.drawScreen(x, y, f);
-		//drawDefaultBackground();
 		drawCenteredString(this.fontRendererObj, "Veins", this.width / 2, 15, 3333333);
 		drawCenteredString(this.fontRendererObj, "Current vein: " + settings.getCurrentVein().getName(), this.width/2, 32, 16777215);
 		super.drawScreen(x,y,f);

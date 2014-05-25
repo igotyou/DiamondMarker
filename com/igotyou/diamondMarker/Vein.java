@@ -1,4 +1,4 @@
-package com.example.diamondMarker;
+package com.igotyou.diamondMarker;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.example.diamondMarker.MinedOre.Type;
-import com.example.diamondMarker.utils.Location;
+import com.igotyou.diamondMarker.MinedOre.Type;
+import com.igotyou.diamondMarker.utils.Location;
 
 public class Vein 
 {

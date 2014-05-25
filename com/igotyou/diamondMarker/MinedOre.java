@@ -1,15 +1,15 @@
-package com.example.diamondMarker;
+package com.igotyou.diamondMarker;
 
 import java.util.Date;
 
-import com.example.diamondMarker.utils.Location;
+import com.igotyou.diamondMarker.utils.Location;
 
 public class MinedOre 
 {
 	public static enum Type {QUARTZ(153), EMERALD(129), REDSTONE(73), DIAMOND(56), LAPIS(21), COAL(16), IRON(15), GOLD(14);
 	
 	private int id;
-
+	
     private Type(int id) {
             this.id = id;
     }	
@@ -25,8 +25,7 @@ public class MinedOre
                 return As[i];
         }
         return null;
-    }
-    
+    }    
     
 	};
 	private Location location;
