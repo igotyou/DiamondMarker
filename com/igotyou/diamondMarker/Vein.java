@@ -41,6 +41,45 @@ public class Vein
 		return ores.size();
 	}
 	
+	public int getOreHeight()
+	{
+		int lowestY = 0;
+		int highestY = 0;
+		for(MinedOre ore : ores)
+		{
+			if(lowestY > ore.getLocation().getY() || lowestY == 0)
+			{
+				lowestY = ore.getLocation().getY();
+			}
+			if(highestY < ore.getLocation().getY() || highestY == 0)
+			{
+				highestY = ore.getLocation().getY();
+			}
+		}
+		return highestY-lowestY;
+	}
+	
+	public int getOreHeight(Type type)
+	{
+		int lowestY = 0;
+		int highestY = 0;
+		for(MinedOre ore : ores)
+		{
+			if(ore.getBlockType() == type)
+			{
+				if(lowestY > ore.getLocation().getY() || lowestY == 0)
+				{
+					lowestY = ore.getLocation().getY();
+				}
+				if(highestY < ore.getLocation().getY() || highestY == 0)
+				{
+					highestY = ore.getLocation().getY();
+				}	
+			}
+		}
+		return highestY-lowestY;
+	}
+	
 	public TreeMap<Type, Integer> getOrderMap()
 	{
 		HashMap<Type, Integer> tempMap = new HashMap<Type, Integer>();
@@ -63,6 +102,99 @@ public class Vein
 		
 		return resultMap;
 	}
+	
+	public HashMap<Integer, Integer> getOresByY(Type type)
+	{
+		HashMap<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
+
+		for(MinedOre ore : ores)
+		{
+			if(ore.getBlockType() == type)
+			{
+				int y = ore.getLocation().getY();
+				int amount = 0;
+				if(tempMap.get(y) != null)
+				{
+					amount = tempMap.get(y);
+				}
+				tempMap.put(y, amount+1);
+			}
+		}
+		return tempMap;
+	}
+	
+	public List<MinedOre> getOresOfType(Type type)
+	{
+		List<MinedOre> tempOres = new ArrayList<MinedOre>();
+		for(MinedOre ore : ores)
+		{
+			if(ore.getBlockType() == type)
+			{
+				tempOres.add(ore);
+			}
+		}
+		return tempOres;
+	}
+	
+	public List<MinedOre> getOresOfType(Type type, int y)
+	{
+		List<MinedOre> tempOres = new ArrayList<MinedOre>();
+		for(MinedOre ore : ores)
+		{
+			if(ore.getBlockType() == type && ore.getLocation().getY() == y)
+			{
+				tempOres.add(ore);
+			}
+		}
+		return tempOres;
+	}
+
+	public Location getAverageLocation()
+	{
+		Location location = new Location(0,0,0);
+		int i;
+		for(i=0;i<ores.size();i++)
+		{
+			location = location.add(ores.get(i).getLocation());
+		}
+		location = location.divide(i+1);
+		return location;
+	}
+	
+	public Location getAverageLocation(Type type)
+	{
+		Location location = new Location(0,0,0);
+		int i2 = 0;
+		for(int i=0;i<ores.size();i++)
+		{
+			if(ores.get(i).getBlockType()==type)
+			{
+				i2++;
+				location = location.add(ores.get(i).getLocation());
+			}
+		}
+		location = location.divide(i2);
+		return location;
+	}
+	
+	public int getRadiusFromLocation(Location location)
+	{
+		int distance = 0;
+		for(MinedOre ore : ores)
+		{
+			if(ore.getLocation().getDistance(location)>distance)
+			{
+				distance = Math.round(ore.getLocation().getDistance(location));
+			}
+		}
+		return distance;
+	}
+	
+	public float orePerSquareMeter(int radius,Type type)
+	{
+		return (float) (getOresOfType(type).size()/(Math.PI*(radius^2)));
+	}
+	
 	private class ValueComparator implements Comparator<Type> 
 	{
 

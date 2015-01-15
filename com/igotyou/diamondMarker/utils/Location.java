@@ -171,6 +171,11 @@ public class Location
 	{
 		return "world: " + dimensionId + " X: " + x + " Y: " + y + " Z: " + z;
 	}
+	
+	public String toStringNoWorld()
+	{
+		return "X: " + x + " Y: " + y + " Z: " + z;
+	}
 
 	public void setY(int y) 
 	{

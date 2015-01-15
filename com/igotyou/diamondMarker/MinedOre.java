@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.igotyou.diamondMarker.utils.Location;
 
-public class MinedOre 
+public class MinedOre implements Comparable
 {
 	public static enum Type {QUARTZ(153), EMERALD(129), REDSTONE(73), DIAMOND(56), LAPIS(21), COAL(16), IRON(15), GOLD(14);
 	
@@ -58,4 +58,13 @@ public class MinedOre
 	{
 		return location.toString() + " type:" + type.toString() + " date:" + date.toGMTString();
 	}
+
+	@Override
+	public int compareTo(Object ore) 
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 }

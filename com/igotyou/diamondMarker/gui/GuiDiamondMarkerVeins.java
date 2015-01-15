@@ -57,7 +57,14 @@ public class GuiDiamondMarkerVeins extends GuiScreen
 				if(settings.getVeinListSize()>1)
 				{
 					settings.removeVein(this.slotContianer.selectedIndex);
-					settings.setSelectedVein(this.slotContianer.selectedIndex-1);
+					if(this.slotContianer.selectedIndex == 0)
+					{
+						settings.setSelectedVein(0);
+					}
+					else
+					{
+						settings.setSelectedVein(this.slotContianer.selectedIndex-1);
+					}
 					DiamondMarker.saveConfiguration();	
 				}
 			}

@@ -76,6 +76,10 @@ public class DiamondMarker
         	settings.setSelectedVein(0);
         	settings.save(settingsFile);
         }
+        if(settings.getCurrentIndex() < 0)
+        {
+        	settings.setSelectedVein(0);
+        }
         saveConfiguration();
     }
     

@@ -24,29 +24,31 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererChestHelper;
 import net.minecraft.item.ItemStack;
 
-public class GuiDiamondMarkerVeinSlot extends GuiSlot
+public class GuiDiamondMarkerOreSlot extends GuiSlot
 {
-	private final GuiDiamondMarkerVein previousScreen;
-	protected int selectedIndex = 0;
+	private final GuiDiamondMarkerOre slotParent;
+	protected int selectedIndex = 1;
 	private FontRenderer fontRenderer;
 	private RenderItem renderItem;
 	private TextureManager renderEngine = Minecraft.getMinecraft().renderEngine;
 	private Tessellator tess;
 	private Vein vein;
+	private Type type;
 	
-	public GuiDiamondMarkerVeinSlot(GuiDiamondMarkerVein previousScreen, Vein veinToDisplay) 
+	public GuiDiamondMarkerOreSlot(GuiDiamondMarkerOre slotParent, Vein veinToDisplay, Type type) 
 	{
-		super(Minecraft.getMinecraft(), previousScreen.width , previousScreen.height , 50, previousScreen.height-60, 32);
+		super(Minecraft.getMinecraft(), slotParent.width , slotParent.height , 50, slotParent.height-60, 32);
 		this.fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		this.renderItem = new RenderItem();
-		this.previousScreen = previousScreen;
+		this.slotParent = slotParent;
 		this.tess = Tessellator.instance;
 		this.vein = veinToDisplay;
+		this.type = type;
 	}
 
 	protected int getSize() 
 	{
-		return this.vein.getOrderMap().size();
+		return this.vein.getOresByY(type).size();
 	}
 
 	protected int getContentHeight()
@@ -60,7 +62,6 @@ public class GuiDiamondMarkerVeinSlot extends GuiSlot
 		{
 			if(var2)
 			{
-				this.previousScreen.mc.displayGuiScreen(new GuiDiamondMarkerOre(this.previousScreen, this.vein, (Type) vein.getOrderMap().keySet().toArray()[var1]));
 			}
 			else
 			{
@@ -76,20 +77,22 @@ public class GuiDiamondMarkerVeinSlot extends GuiSlot
 	
 	protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator tessellator, int var6, int var7)
 	{
-		if(var1 <  this.vein.getOrderMap().size() && var1 >= 0)
+		if(var1 <  this.getSize() && var1 >= 0)
 		{
-			Set<Type> oreSet = vein.getOrderMap().keySet();
-			Collection<Integer> valueSet = vein.getOrderMap().values();
-			Type oreType = (Type) oreSet.toArray()[var1];
-			String oreAmount = valueSet.toArray()[var1] + " " + oreType.toString();
-			int stringWidth = fontRenderer.getStringWidth(oreAmount);
+			Set<Integer> ySet = vein.getOresByY(type).keySet();
+			Collection<Integer> valueSet = vein.getOresByY(type).values();
+			int y = (Integer) ySet.toArray()[var1];
+			String oreAmount = valueSet.toArray()[var1] + " " + type.toString();
+			String outputString = "Y " + String.valueOf(y) + ": " + oreAmount; 
+			int stringWidth = fontRenderer.getStringWidth(outputString);
+			
 			GL11.glEnable(32826);
 			RenderHelper.enableGUIStandardItemLighting();
-			this.drawItemStack(var2, var3, new ItemStack(Block.getBlockById(oreType.getId())));
+			this.drawItemStack(var2, var3, new ItemStack(Block.getBlockById(type.getId())));
 			RenderHelper.disableStandardItemLighting();
 			GL11.glDisable(32826);
-
-			this.previousScreen.drawString(this.fontRenderer, oreAmount, this.previousScreen.width/2-(stringWidth/2), var3, 3333333);
+			
+			this.slotParent.drawString(this.fontRenderer, outputString, this.slotParent.width/2-(stringWidth/2), var3, 3333333);
 		}
 	}
 
