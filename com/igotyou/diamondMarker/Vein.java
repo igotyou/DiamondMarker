@@ -192,7 +192,7 @@ public class Vein
 	
 	public float orePerSquareMeter(int radius,Type type)
 	{
-		return (float) (getOresOfType(type).size()/(Math.PI*(radius^2)));
+		return (float) (getOresOfType(type).size()/(Math.PI*(radius*radius)));
 	}
 	
 	private class ValueComparator implements Comparator<Type> 
